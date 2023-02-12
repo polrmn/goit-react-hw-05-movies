@@ -18,7 +18,9 @@ const Movies = () => {
         const getSearchingFilms = async () => {
           setSearchedMovies(await getMovieByQuery(query));
         };
-        getSearchingFilms();
+        if (query !== '') {
+          getSearchingFilms();
+        }
     },[query])
 
     const handleFormSubmit = (query) => {
@@ -27,7 +29,9 @@ const Movies = () => {
     return (
       <main>
         <SearchForm onSubmit={handleFormSubmit} />
-        <FimlList films={searchedMovies} location={location}/>
+        {searchedMovies.length > 0 && (
+          <FimlList films={searchedMovies} location={location} />
+        )}
       </main>
     );
 }

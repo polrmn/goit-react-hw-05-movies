@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMovieReview } from 'services/TMDBApi';
+import { ReviewsList } from './Reviews.styled';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -17,14 +18,14 @@ const Reviews = () => {
   }, [id]);
 
   return (
-    <ul>
+    <ReviewsList>
       {reviews.map(review => (
         <li key={review.id}>
           <h2>{review.author}</h2>
           <p>{review.content}</p>
         </li>
       ))}
-    </ul>
+    </ReviewsList>
   );
 };
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { getMovieDetails } from "services/TMDBApi";
-
+import { FilmInfoList, GoBackButton, MoreInfoList, MoreInfoWraper, Wraper } from "./MovieDetails.styled";
 
 const MovieDetails = () => {
   const location = useLocation();
@@ -22,18 +22,19 @@ const MovieDetails = () => {
 
     return (
       <main>
-        <Link to={location.state.back}>
-          <button type="button">Go back</button>
-        </Link>
-
-        <section>
+        <GoBackButton to={location.state.back}/>
+        <Wraper>
           <img
-            src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
+            src={
+              film.poster_path
+                ? `https://image.tmdb.org/t/p/w500${film.poster_path}`
+                : `https://skydomepictures.com/wp-content/uploads/2018/08/movie-poster-coming-soon-2.png`
+            }
             alt={film.title}
           />
           <div>
             <h1>{film.title}</h1>
-            <ul>
+            <FilmInfoList>
               <li>
                 <p>User score: {Math.round(film.vote_average * 10)}%</p>
               </li>
@@ -48,11 +49,11 @@ const MovieDetails = () => {
                     film.genres.map(genre => genre.name).join(' ')}
                 </p>
               </li>
-            </ul>
+            </FilmInfoList>
           </div>
-        </section>
-        <section>
-          <ul>
+        </Wraper>
+        <MoreInfoWraper>
+          <MoreInfoList>
             <li>
               <Link to="cast" state={{ back: location.state.back }}>
                 Cast
@@ -63,9 +64,9 @@ const MovieDetails = () => {
                 Reviews
               </Link>
             </li>
-          </ul>
+          </MoreInfoList>
           <Outlet />
-        </section>
+        </MoreInfoWraper>
       </main>
     );
 }
