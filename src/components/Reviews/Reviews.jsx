@@ -18,6 +18,7 @@ const Reviews = () => {
   }, [id]);
 
   return (
+    reviews.length > 0 ? 
     <ReviewsList>
       {reviews.map(review => (
         <li key={review.id}>
@@ -25,7 +26,10 @@ const Reviews = () => {
           <p>{review.content}</p>
         </li>
       ))}
-    </ReviewsList>
+    </ReviewsList> :
+    <h3>No reviews yet</h3>
+  
+    
   );
 };
 
