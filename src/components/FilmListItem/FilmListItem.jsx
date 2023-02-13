@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import PropTypes from 'prop-types';
 import { Image, ListItem } from "./FilmListItem.styled";
 
 const FilmListItem = ({film, from}) => {
@@ -23,6 +24,19 @@ const FilmListItem = ({film, from}) => {
         </Link>
       </ListItem>
     );
+}
+
+FilmListItem.propTypes = {
+  film: PropTypes.shape({
+      poster_path: PropTypes.string,
+      title: PropTypes.string,
+      original_title: PropTypes.string,
+      id: PropTypes.number.isRequired,
+    }).isRequired,
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+
+  })
 }
 
 export default FilmListItem
