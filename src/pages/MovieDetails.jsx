@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Link, Outlet, useLocation, useParams } from "react-router-dom";
+import { Outlet, useLocation, useParams } from "react-router-dom";
 import { getMovieDetails } from "services/TMDBApi";
-import { FilmInfoList, GoBackButton, MoreInfoList, MoreInfoWraper, Wraper } from "./MovieDetails.styled";
+import { FilmInfoList, GoBackButton, LinkMore, MoreInfoList, MoreInfoWraper, Wraper } from "./MovieDetails.styled";
 
 const MovieDetails = () => {
   const location = useLocation();
@@ -55,14 +55,14 @@ const MovieDetails = () => {
         <MoreInfoWraper>
           <MoreInfoList>
             <li>
-              <Link to="cast" state={{ back: location.state.back }}>
+              <LinkMore to="cast" state={{ back: location.state.back }}>
                 Cast
-              </Link>
+              </LinkMore>
             </li>
             <li>
-              <Link to="reviews" state={{ back: location.state.back }}>
+              <LinkMore to="reviews" state={{ back: location.state.back }}>
                 Reviews
-              </Link>
+              </LinkMore>
             </li>
           </MoreInfoList>
           <Outlet />

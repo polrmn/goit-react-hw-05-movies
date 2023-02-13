@@ -11,6 +11,7 @@ export const ReviewsList = styled.ul`
     gap: 12px;
     text-align: start;
     border-bottom: 4px solid teal;
+    padding-bottom: 8px;
     & > h2 {
       margin: 0;
     }

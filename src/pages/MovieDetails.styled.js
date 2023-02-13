@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const GoBackButton = styled(Link)`
@@ -21,7 +21,7 @@ export const GoBackButton = styled(Link)`
 
   &:hover {
     transform: scale(1.2);
-    border: 4px solid teal;    
+    border: 4px solid teal;
   }
 `;
 
@@ -56,11 +56,16 @@ export const MoreInfoList = styled.ul`
     &:hover {
       background: linear-gradient(30deg, teal, transparent);
     }
-    & a {
-      display: block;
-      text-decoration: none;
-      color: #000;
-    }
+  }
+`;
+
+export const LinkMore = styled(NavLink)`
+  display: block;
+  text-decoration: none;
+  color: #000;
+  &.active {
+    color: white;
+    background: linear-gradient(30deg, teal, transparent);
   }
 `;
 

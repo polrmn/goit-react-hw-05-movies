@@ -1,8 +1,9 @@
-import FimlList from "components/FilmList/FilmList";
-import SearchForm from "components/SearchForm/SearchForm";
 import { useEffect, useState } from "react"
 import { useSearchParams } from "react-router-dom";
 import { useLocation, } from "react-router-dom";
+import { Notify } from "notiflix";
+import FimlList from "components/FilmList/FilmList";
+import SearchForm from "components/SearchForm/SearchForm";
 import { getMovieByQuery } from "services/TMDBApi";
 
 
@@ -16,6 +17,12 @@ const Movies = () => {
     
     useEffect(()=>{
         const getSearchingFilms = async () => {
+          const answer = await getMovieByQuery(query);
+          console.log(answer);
+          if (answer.length === 0) {
+            Notify.failure('No results');
+            return
+          }
           setSearchedMovies(await getMovieByQuery(query));
         };
         if (query !== '') {
